@@ -9,6 +9,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -25,7 +26,7 @@ func main() {
 		}
 
 		// quit
-		if s := string(line); s == "q" || s == "quit" || s == "exit" {
+		if s := strings.TrimSpace(line); s == "q" || s == "quit" || s == "exit" {
 			return
 		}
 
