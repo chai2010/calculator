@@ -413,8 +413,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    20,    20,    22,    25,    26,    29,    32,    33,    34,
-      37,    40
+       0,    20,    20,    22,    25,    26,    27,    30,    31,    32,
+      35,    36
 };
 #endif
 
@@ -1322,43 +1322,49 @@ yyreduce:
     { printf("= %d\n", (yyvsp[(2) - (3)])); ;}
     break;
 
+  case 4:
+#line 25 "calc.y"
+    { (yyval) = (yyvsp[(1) - (1)]); ;}
+    break;
+
   case 5:
 #line 26 "calc.y"
-    {
-		(yyval) = (yyvsp[(1) - (3)]) + (yyvsp[(3) - (3)]);
-	;}
+    { (yyval) = (yyvsp[(1) - (3)]) + (yyvsp[(3) - (3)]); ;}
     break;
 
   case 6:
-#line 29 "calc.y"
+#line 27 "calc.y"
     { (yyval) = (yyvsp[(1) - (3)]) - (yyvsp[(3) - (3)]); ;}
     break;
 
+  case 7:
+#line 30 "calc.y"
+    { (yyval) = (yyvsp[(1) - (1)]); ;}
+    break;
+
   case 8:
-#line 33 "calc.y"
+#line 31 "calc.y"
     { (yyval) = (yyvsp[(1) - (3)]) * (yyvsp[(3) - (3)]); ;}
     break;
 
   case 9:
-#line 34 "calc.y"
+#line 32 "calc.y"
     { (yyval) = (yyvsp[(1) - (3)]) / (yyvsp[(3) - (3)]); ;}
     break;
 
   case 10:
-#line 37 "calc.y"
-    {
-		(yyval) = (yyvsp[(1) - (1)]);
-	;}
+#line 35 "calc.y"
+    { (yyval) = (yyvsp[(1) - (1)]); ;}
     break;
 
   case 11:
-#line 40 "calc.y"
+#line 36 "calc.y"
     { (yyval) = (yyvsp[(2) - (2)]) >= 0? (yyvsp[(2) - (2)]) : - (yyvsp[(2) - (2)]); ;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1362 "calc.tab.c"
+#line 1368 "calc.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1572,7 +1578,7 @@ yyreturn:
 }
 
 
-#line 43 "calc.y"
+#line 39 "calc.y"
 
 
 void yyerror(const char* msg) {
