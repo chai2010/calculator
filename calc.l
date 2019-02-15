@@ -5,7 +5,7 @@
 %option noyywrap
 
 %{
-#include "calc.tab.h"
+#include "tok.h"
 %}
 
 %%
@@ -14,7 +14,7 @@
 "*"    { return MUL; }
 "/"    { return DIV; }
 "|"    { return ABS; }
-[0-9]+ { yylval = atoi(yytext); return NUMBER; }
+[0-9]+ { return NUMBER; }
 \n     { return EOL; }
 [ \t]  { /* ignore whitespace */ }
 .      { printf("Mystery character '%c'\n", *yytext); }

@@ -9,7 +9,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 )
 %}
 
@@ -49,48 +48,3 @@ term
 	}
 
 %%
-
-type calcLex struct {
-	data []byte
-}
-
-func newCalcLexer(data []byte) *calcLex {
-	yyScanBytes([]byte(data))
-	return &calcLex{
-		data: data,
-	}
-}
-
-// The parser calls this method to get each new token. This
-// implementation returns operators and NUM.
-func (x *calcLex) Lex(yylval *calcSymType) int {
-	tok, val := yyLex()
-	if tok == 0 {
-		return 0
-	}
-
-	switch tok {
-	case yyToken_NUMBER:
-		yylval.value = val.(int)
-		return NUMBER
-	case yyToken_ADD:
-		return ADD
-	case yyToken_SUB:
-		return SUB
-	case yyToken_MUL:
-		return MUL
-	case yyToken_DIV:
-		return DIV
-	case yyToken_ABS:
-		return ABS
-	case yyToken_EOL:
-		return EOL
-	}
-
-	return 0
-}
-
-// The parser calls this method on a parse error.
-func (x *calcLex) Error(s string) {
-	log.Printf("parse error: %s", s)
-}

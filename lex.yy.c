@@ -460,7 +460,7 @@ char *yytext;
 /* Use of this source code is governed by a Apache */
 /* license that can be found in the LICENSE file. */
 #line 8 "calc.l"
-#include "calc.tab.h"
+#include "tok.h"
 #line 465 "lex.yy.c"
 
 #define INITIAL 0
@@ -756,7 +756,7 @@ YY_RULE_SETUP
 case 6:
 YY_RULE_SETUP
 #line 17 "calc.l"
-{ yylval = atoi(yytext); return NUMBER; }
+{ return NUMBER; }
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */

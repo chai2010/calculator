@@ -12,9 +12,6 @@ run: lex.yy.c
 flex:
 	flex --prefix=yy --header-file=lex.yy.h calc.l
 
-bison:
-	bison -d calc.y
-
 goyacc:
 	goyacc -o calc.yy.go -p "calc" calc.go.y
 

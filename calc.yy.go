@@ -9,10 +9,9 @@ import __yyfmt__ "fmt"
 
 import (
 	"fmt"
-	"log"
 )
 
-//line calc.go.y:16
+//line calc.go.y:15
 type calcSymType struct {
 	yys   int
 	value int
@@ -44,52 +43,7 @@ const calcEofCode = 1
 const calcErrCode = 2
 const calcInitialStackSize = 16
 
-//line calc.go.y:51
-
-type calcLex struct {
-	data []byte
-}
-
-func newCalcLexer(data []byte) *calcLex {
-	yyScanBytes([]byte(data))
-	return &calcLex{
-		data: data,
-	}
-}
-
-// The parser calls this method to get each new token. This
-// implementation returns operators and NUM.
-func (x *calcLex) Lex(yylval *calcSymType) int {
-	tok, val := yyLex()
-	if tok == 0 {
-		return 0
-	}
-
-	switch tok {
-	case yyToken_NUMBER:
-		yylval.value = val.(int)
-		return NUMBER
-	case yyToken_ADD:
-		return ADD
-	case yyToken_SUB:
-		return SUB
-	case yyToken_MUL:
-		return MUL
-	case yyToken_DIV:
-		return DIV
-	case yyToken_ABS:
-		return ABS
-	case yyToken_EOL:
-		return EOL
-	}
-
-	return 0
-}
-
-// The parser calls this method on a parse error.
-func (x *calcLex) Error(s string) {
-	log.Printf("parse error: %s", s)
-}
+//line calc.go.y:50
 
 //line yacctab:1
 var calcExca = [...]int{
@@ -487,55 +441,55 @@ calcdefault:
 
 	case 2:
 		calcDollar = calcS[calcpt-3 : calcpt+1]
-//line calc.go.y:29
+//line calc.go.y:28
 		{
 			fmt.Printf("= %v\n", calcDollar[2].value)
 		}
 	case 3:
 		calcDollar = calcS[calcpt-1 : calcpt+1]
-//line calc.go.y:32
+//line calc.go.y:31
 		{
 			calcVAL.value = calcDollar[1].value
 		}
 	case 4:
 		calcDollar = calcS[calcpt-3 : calcpt+1]
-//line calc.go.y:33
+//line calc.go.y:32
 		{
 			calcVAL.value = calcDollar[1].value + calcDollar[3].value
 		}
 	case 5:
 		calcDollar = calcS[calcpt-3 : calcpt+1]
-//line calc.go.y:34
+//line calc.go.y:33
 		{
 			calcVAL.value = calcDollar[1].value - calcDollar[3].value
 		}
 	case 6:
 		calcDollar = calcS[calcpt-1 : calcpt+1]
-//line calc.go.y:37
+//line calc.go.y:36
 		{
 			calcVAL.value = calcDollar[1].value
 		}
 	case 7:
 		calcDollar = calcS[calcpt-3 : calcpt+1]
-//line calc.go.y:38
+//line calc.go.y:37
 		{
 			calcVAL.value = calcDollar[1].value * calcDollar[3].value
 		}
 	case 8:
 		calcDollar = calcS[calcpt-3 : calcpt+1]
-//line calc.go.y:39
+//line calc.go.y:38
 		{
 			calcVAL.value = calcDollar[1].value / calcDollar[3].value
 		}
 	case 9:
 		calcDollar = calcS[calcpt-1 : calcpt+1]
-//line calc.go.y:42
+//line calc.go.y:41
 		{
 			calcVAL.value = calcDollar[1].value
 		}
 	case 10:
 		calcDollar = calcS[calcpt-2 : calcpt+1]
-//line calc.go.y:43
+//line calc.go.y:42
 		{
 			if calcDollar[2].value >= 0 {
 				calcVAL.value = calcDollar[2].value

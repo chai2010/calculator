@@ -4,58 +4,55 @@
 
 package main
 
-//#include "calc.tab.h"
+//#include "tok.h"
 //#include "lex.yy.h"
-//
-//extern int yyparse();
 import "C"
 
 import (
-	"fmt"
+	"log"
+	"strconv"
 )
 
-type yyToken int
-
-const (
-	yyToken_NUMBER = yyToken(C.NUMBER)
-	yyToken_ADD    = yyToken(C.ADD)
-	yyToken_SUB    = yyToken(C.SUB)
-	yyToken_MUL    = yyToken(C.MUL)
-	yyToken_DIV    = yyToken(C.DIV)
-	yyToken_ABS    = yyToken(C.ABS)
-	yyToken_EOL    = yyToken(C.EOL)
-)
-
-var yyToken_names = map[yyToken]string{
-	yyToken_NUMBER: "NUMBER",
-	yyToken_ADD:    "ADD",
-	yyToken_SUB:    "SUB",
-	yyToken_MUL:    "MUL",
-	yyToken_DIV:    "DIV",
-	yyToken_ABS:    "ABS",
-	yyToken_EOL:    "EOL",
+type calcLex struct {
+	data []byte
 }
 
-func (tok yyToken) String() string {
-	if s, ok := yyToken_names[tok]; ok {
-		return s
-	}
-	return fmt.Sprintf("yyToken %d", int(tok))
-}
-
-func yyScanBytes(data []byte) {
+func newCalcLexer(data []byte) *calcLex {
 	C.yy_scan_bytes(
 		(*C.char)(C.CBytes(data)),
 		C.yy_size_t(len(data)),
 	)
+
+	return &calcLex{
+		data: data,
+	}
 }
 
-func yyLex() (tok yyToken, val interface{}) {
-	tok = yyToken(C.yylex())
-	val = int(C.yylval)
-	return
+// The parser calls this method to get each new token. This
+// implementation returns operators and NUM.
+func (x *calcLex) Lex(yylval *calcSymType) int {
+	switch C.yylex() {
+	case C.NUMBER:
+		yylval.value, _ = strconv.Atoi(C.GoString(C.yytext))
+		return NUMBER
+	case C.ADD:
+		return ADD
+	case C.SUB:
+		return SUB
+	case C.MUL:
+		return MUL
+	case C.DIV:
+		return DIV
+	case C.ABS:
+		return ABS
+	case C.EOL:
+		return EOL
+	}
+
+	return 0 // eof
 }
 
-func yyParse() int {
-	return int(C.yyparse())
+// The parser calls this method on a parse error.
+func (x *calcLex) Error(s string) {
+	log.Printf("parse error: %s", s)
 }
