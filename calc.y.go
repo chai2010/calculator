@@ -43,7 +43,7 @@ const calcEofCode = 1
 const calcErrCode = 2
 const calcInitialStackSize = 16
 
-//line calc.y:50
+//line calc.y:44
 
 //line yacctab:1
 var calcExca = [...]int{
