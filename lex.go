@@ -13,6 +13,8 @@ import (
 	"strconv"
 )
 
+var _ calcLexer = (*calcLex)(nil)
+
 type calcLex struct {
 	data []byte
 }
