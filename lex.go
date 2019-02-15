@@ -5,7 +5,7 @@
 package main
 
 //#include "tok.h"
-//#include "lex.yy.h"
+//#include "calc.lex.h"
 import "C"
 
 import (

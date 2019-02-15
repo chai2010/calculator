@@ -1,5 +1,6 @@
+#line 2 "calc.lex.c"
 
-#line 3 "lex.yy.c"
+#line 4 "calc.lex.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -461,7 +462,7 @@ char *yytext;
 /* license that can be found in the LICENSE file. */
 #line 8 "calc.l"
 #include "tok.h"
-#line 465 "lex.yy.c"
+#line 466 "calc.lex.c"
 
 #define INITIAL 0
 
@@ -645,7 +646,7 @@ YY_DECL
     
 #line 11 "calc.l"
 
-#line 649 "lex.yy.c"
+#line 650 "calc.lex.c"
 
 	if ( !(yy_init) )
 		{
@@ -779,7 +780,7 @@ YY_RULE_SETUP
 #line 21 "calc.l"
 ECHO;
 	YY_BREAK
-#line 783 "lex.yy.c"
+#line 784 "calc.lex.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 

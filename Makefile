@@ -2,21 +2,17 @@
 # Use of this source code is governed by a Apache
 # license that can be found in the LICENSE file.
 
-run: lex.yy.c
+run:
 	make flex
-	make bison
+	make goyacc
+
 	@go fmt
-	@go vet
 	go run .
 
 flex:
-	flex --prefix=yy --header-file=lex.yy.h calc.l
+	flex --prefix=yy --header-file=calc.lex.h -o calc.lex.c calc.l
 
 goyacc:
-	goyacc -o calc.yy.go -p "calc" calc.go.y
-
-lex.yy.c: calc.l
-	flex calc.l
+	goyacc -o calc.y.go -p "calc" calc.y
 
 clean:
-	-rm lex.yy.c

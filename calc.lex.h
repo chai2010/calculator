@@ -2,7 +2,9 @@
 #define yyHEADER_H 1
 #define yyIN_HEADER 1
 
-#line 6 "lex.yy.h"
+#line 6 "calc.lex.h"
+
+#line 8 "calc.lex.h"
 
 #define  YY_INT_ALIGNED short int
 
@@ -315,6 +317,6 @@ extern int yylex (void);
 #line 21 "calc.l"
 
 
-#line 319 "lex.yy.h"
+#line 321 "calc.lex.h"
 #undef yyIN_HEADER
 #endif /* yyHEADER_H */
