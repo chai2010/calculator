@@ -646,7 +646,8 @@ YY_DECL
     
 #line 11 "calc.l"
 
-#line 650 "calc.lex.c"
+
+#line 651 "calc.lex.c"
 
 	if ( !(yy_init) )
 		{
@@ -731,56 +732,56 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 12 "calc.l"
+#line 13 "calc.l"
 { return ADD; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 13 "calc.l"
+#line 14 "calc.l"
 { return SUB; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 14 "calc.l"
+#line 15 "calc.l"
 { return MUL; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 15 "calc.l"
+#line 16 "calc.l"
 { return DIV; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 16 "calc.l"
+#line 17 "calc.l"
 { return ABS; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 17 "calc.l"
+#line 18 "calc.l"
 { return NUMBER; }
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 18 "calc.l"
+#line 19 "calc.l"
 { return EOL; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 19 "calc.l"
+#line 20 "calc.l"
 { /* ignore whitespace */ }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 20 "calc.l"
-{ printf("Mystery character '%c'\n", *yytext); }
+#line 21 "calc.l"
+{ return ILLEGAL; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 21 "calc.l"
+#line 23 "calc.l"
 ECHO;
 	YY_BREAK
-#line 784 "calc.lex.c"
+#line 785 "calc.lex.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1777,7 +1778,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 21 "calc.l"
+#line 23 "calc.l"
 
 
 

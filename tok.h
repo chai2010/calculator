@@ -9,5 +9,7 @@ enum {
 	MUL = 261,
 	DIV = 262,
 	ABS = 263,
-	EOL = 264
+	EOL = 264,
+
+	ILLEGAL = 10000
 };

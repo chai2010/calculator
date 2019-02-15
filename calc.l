@@ -9,6 +9,7 @@
 %}
 
 %%
+
 "+"    { return ADD; }
 "-"    { return SUB; }
 "*"    { return MUL; }
@@ -17,6 +18,7 @@
 [0-9]+ { return NUMBER; }
 \n     { return EOL; }
 [ \t]  { /* ignore whitespace */ }
-.      { printf("Mystery character '%c'\n", *yytext); }
+.      { return ILLEGAL; }
+
 %%
 

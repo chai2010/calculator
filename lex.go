@@ -9,33 +9,43 @@ package main
 import "C"
 
 import (
+	"errors"
 	"log"
 	"strconv"
 )
 
-var _ calcLexer = (*calcLex)(nil)
-
 type calcLex struct {
-	data []byte
+	yylineno int
+	yytext   string
+	lastErr  error
 }
 
+var _ calcLexer = (*calcLex)(nil)
+
 func newCalcLexer(data []byte) *calcLex {
+	p := new(calcLex)
+
 	C.yy_scan_bytes(
 		(*C.char)(C.CBytes(data)),
 		C.yy_size_t(len(data)),
 	)
 
-	return &calcLex{
-		data: data,
-	}
+	return p
 }
 
 // The parser calls this method to get each new token. This
 // implementation returns operators and NUM.
-func (x *calcLex) Lex(yylval *calcSymType) int {
-	switch C.yylex() {
+func (p *calcLex) Lex(yylval *calcSymType) int {
+	p.lastErr = nil
+
+	var tok = C.yylex()
+
+	p.yylineno = int(C.yylineno)
+	p.yytext = C.GoString(C.yytext)
+
+	switch tok {
 	case C.NUMBER:
-		yylval.value, _ = strconv.Atoi(C.GoString(C.yytext))
+		yylval.value, _ = strconv.Atoi(p.yytext)
 		return NUMBER
 	case C.ADD:
 		return ADD
@@ -51,10 +61,17 @@ func (x *calcLex) Lex(yylval *calcSymType) int {
 		return EOL
 	}
 
+	if tok == C.ILLEGAL {
+		log.Printf("lex: ILLEGAL token, yytext = %q, yylineno = %d", p.yytext, p.yylineno)
+	}
+
 	return 0 // eof
 }
 
 // The parser calls this method on a parse error.
-func (x *calcLex) Error(s string) {
-	log.Printf("parse error: %s", s)
+func (p *calcLex) Error(s string) {
+	p.lastErr = errors.New("yacc: " + s)
+	if err := p.lastErr; err != nil {
+		log.Println(err)
+	}
 }
