@@ -15,6 +15,9 @@ flex:
 bison:
 	bison -d calc.y
 
+goyacc:
+	goyacc -o calc.yy.go -p "calc" calc.go.y
+
 lex.yy.c: calc.l
 	flex calc.l
 

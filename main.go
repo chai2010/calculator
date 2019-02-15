@@ -30,7 +30,7 @@ func main() {
 			return
 		}
 
-		yyScanBytes([]byte(line))
-		yyParse()
+		// flex + goyacc
+		calcParse(newCalcLexer([]byte(line)))
 	}
 }

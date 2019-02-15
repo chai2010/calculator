@@ -1,3 +1,5 @@
 _build
 a.out
+
 *.o
+*.output
