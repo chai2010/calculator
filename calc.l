@@ -10,12 +10,16 @@
 
 %%
 
+[0-9]+ { return NUMBER; }
+
 "+"    { return ADD; }
 "-"    { return SUB; }
 "*"    { return MUL; }
 "/"    { return DIV; }
 "|"    { return ABS; }
-[0-9]+ { return NUMBER; }
+"("    { return LPAREN; }
+")"    { return RPAREN; }
+
 \n     { return EOL; }
 [ \t]  { /* ignore whitespace */ }
 .      { return ILLEGAL; }

@@ -20,6 +20,7 @@ import (
 
 %token <value> NUMBER
 %token ADD SUB MUL DIV ABS
+%token LPAREN RPAREN
 %token EOL
 
 %%
@@ -38,7 +39,8 @@ factor
 	| factor DIV term { $$ = $1 / $3 }
 
 term
-	: NUMBER   { $$ = $1 }
-	| ABS term { if $2 >= 0 { $$ = $2 } else { $$ = -$2 } }
+	: NUMBER            { $$ = $1 }
+	| ABS term          { if $2 >= 0 { $$ = $2 } else { $$ = -$2 } }
+	| LPAREN exp RPAREN { $$ = $2 }
 
 %%

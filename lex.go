@@ -47,6 +47,7 @@ func (p *calcLex) Lex(yylval *calcSymType) int {
 	case C.NUMBER:
 		yylval.value, _ = strconv.Atoi(p.yytext)
 		return NUMBER
+
 	case C.ADD:
 		return ADD
 	case C.SUB:
@@ -57,6 +58,12 @@ func (p *calcLex) Lex(yylval *calcSymType) int {
 		return DIV
 	case C.ABS:
 		return ABS
+
+	case C.LPAREN:
+		return LPAREN
+	case C.RPAREN:
+		return RPAREN
+
 	case C.EOL:
 		return EOL
 	}
