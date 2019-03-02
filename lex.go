@@ -44,6 +44,10 @@ func (p *calcLex) Lex(yylval *calcSymType) int {
 	p.yytext = C.GoString(C.yytext)
 
 	switch tok {
+	case C.ID:
+		yylval.id = p.yytext
+		return ID
+
 	case C.NUMBER:
 		yylval.value, _ = strconv.Atoi(p.yytext)
 		return NUMBER
@@ -63,6 +67,8 @@ func (p *calcLex) Lex(yylval *calcSymType) int {
 		return LPAREN
 	case C.RPAREN:
 		return RPAREN
+	case C.ASSIGN:
+		return ASSIGN
 
 	case C.EOL:
 		return EOL

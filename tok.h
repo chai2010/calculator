@@ -6,14 +6,16 @@ enum {
 	ILLEGAL = 10000,
 	EOL = 10001,
 
-	NUMBER = 258,
+	ID = 258,
+	NUMBER = 259,
 
-	ADD = 259, // +
-	SUB = 260, // -
-	MUL = 261, // *
-	DIV = 262, // /
-	ABS = 263, // |
+	ADD = 260, // +
+	SUB = 261, // -
+	MUL = 262, // *
+	DIV = 263, // /
+	ABS = 264, // |
 
-	LPAREN = 264, // (
-	RPAREN = 265, // )
+	LPAREN = 265, // (
+	RPAREN = 266, // )
+	ASSIGN = 267, // =
 };
